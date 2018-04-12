@@ -42,26 +42,39 @@ object UsingShapeless extends App {
   /**
     * An HNil can be trivially massaged to itself.
     */
-  implicit val massageHNilToHNil: Massage[HNil, HNil] = new Massage[HNil, HNil] {
-    def apply(hlist: HNil): HNil = HNil
-  }
+  // TODO
 
   /**
     * An HList of type `FromHead :: FromTail` can be massaged into a type `ToHead :: ToTail` if:
     * - we can inductively massage `FromTail` into `ToTail`, and
     * - we can convert a value of type `FromHead` into a value of type `ToHead`
     */
-  implicit def massageHConsToHCons[FromHead,
-                                   ToHead,
-                                   FromTail <: HList,
-                                   ToTail <: HList](implicit
-      massageRemainder: Massage[FromTail, ToTail],
-      convertHead: Case1.Aux[WrapWithOptionIfNecessary.type, FromHead, ToHead]
-    ): Massage[FromHead :: FromTail, ToHead :: ToTail] =
-    new Massage[FromHead :: FromTail, ToHead :: ToTail] {
-      def apply(from: FromHead :: FromTail): ToHead :: ToTail =
-        convertHead(from.head) :: massageRemainder(from.tail)
-   }
+  // TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // DSL
 
